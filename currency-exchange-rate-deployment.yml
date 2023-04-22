@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: currency-exchange-rate-deployment
+  labels:
+    app: currency-exchange-rate-deployment-label # LABEL-A: <--this label is to manage the deployment itself.
+                                     #this may be used to filter the deployment based on this label.
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: currency-exchange-rate-deployment-pod    #LABEL-B:  <--  field defines how the Deployment finds which Pods to manage.
+  template:
+    metadata:
+      labels:
+        app: currency-exchange-rate-deployment-pod    #LABEL-C: <--this is the label of the pod, this must be same as LABEL-B
+    spec:
+      containers:
+      - name: currency-exchange-rate-deployment-container
+        image: mail2prasanthv/currency-excahnge-service-eks:latest #Container name in the docker hub
+        ports:
+        - containerPort: 8080 # spring boot app runs on port 8080

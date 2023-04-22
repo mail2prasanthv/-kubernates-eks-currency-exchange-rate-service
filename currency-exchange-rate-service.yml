@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: currency-exchange-rate-eks-sevice
+spec:
+ type: ClusterIP
+ selector:
+   app: currency-exchange-rate-deployment-pod #defined in the deployment
+ ports:
+ - port: 8080 #where container is actually running
+   targetPort: 8080 #port of this service. Cluster members talk via this port
