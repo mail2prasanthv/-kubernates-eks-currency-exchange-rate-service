@@ -3,7 +3,7 @@ kind: Service
 metadata:
  name: currency-exchange-rate-eks-sevice
 spec:
- type: ClusterIP
+ type: ClusterIP # Internal communication only. Not exposed to outside world
  selector:
    app: currency-exchange-rate-deployment-pod #defined in the deployment
  ports:
